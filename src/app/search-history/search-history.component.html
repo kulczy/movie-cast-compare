@@ -1,0 +1,15 @@
+<div class="container margin-b" *ngIf="searchHistoryService.searchHistory.length">
+  <h3 class="margin-b">Search history:</h3>
+  <div class="row same-height">
+
+    <div class="col-xs-12 col-sm-6 col-md-4" *ngFor="let item of searchHistoryService.searchHistory">
+      <div class="panel panel-default panel-search-history">
+        <div class="panel-body">
+          <div><strong>{{ item.movieA }}</strong> vs <strong>{{ item.movieB }}</strong></div>
+          <div class="search-history-link" (click)="getMovies(item.movieA, item.movieB)">search again</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

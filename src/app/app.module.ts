@@ -1,20 +1,26 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
+import { MoviesService } from './services/movies.service';
+import { SearchHistoryService } from './services/search-history.service';
 import { AppComponent } from './app.component';
+import { SearchComponent } from './search/search.component';
+import { SearchHistoryComponent } from './search-history/search-history.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SearchComponent,
+    SearchHistoryComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule,
-    HttpModule
+    HttpModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [MoviesService, SearchHistoryService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

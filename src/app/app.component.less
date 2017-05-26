@@ -1,0 +1,204 @@
+@import "../../node_modules/bootstrap/less/bootstrap.less";
+
+// bootstrap variables
+@body-bg: #e9edf4;
+@brand-primary: #0072c9;
+@font-family-sans-serif: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
+@font-size-base: 17px;
+@font-size-small: 14px;
+@line-height-base: 1.9;
+@font-size-h1: 80px;
+@headings-font-weight: 700;
+@headings-line-height: 1.4;
+@border-radius-base: 3px;
+@border-radius-large: 3px;
+@border-radius-small: 3px;
+@panel-body-padding: 50px;
+@panel-inner-border: #fff;
+@panel-default-border: #fff;
+
+// common variables
+@content-position: -130px;
+@base-shadow: 0px 6px 24px 0px rgba(0,0,0,0.03);
+
+// common
+.title { 
+    line-height: 1.1;
+    color: #0086ee; 
+    margin-bottom: 90px;
+}
+
+.btn {
+    box-shadow: @base-shadow;
+    border: none;
+    transition: all .2s;
+}
+
+.panel {
+    box-shadow: @base-shadow;
+}
+
+.margin-b { margin-bottom: 50px; }
+.margin-b-sm { margin-bottom: 25px; }
+
+.row.same-height {
+    display: flex;
+    flex-wrap: wrap;
+
+    [class*='col-'] {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: @screen-xs-max) {
+  .title {
+    font-size: 55px;
+  }
+}
+
+// title and form wrapper
+.search-wrapper {  
+    padding-bottom: 170px;
+    background: #0090ff;
+}
+
+@media (min-width: @screen-sm) {
+    .search-wrapper {  
+        padding-top: 60px;
+    }
+}
+
+// message
+.user-message {
+    margin-top: @content-position;
+}
+
+// search results
+.search-results {
+    margin-top: @content-position;
+
+    .search-result-images {
+        position: relative;
+    
+        > div:nth-child(1) {    
+            position: absolute;
+        }
+    
+        > div:nth-child(2) {
+            position: relative;
+            top: -100px;
+            right: -70px;
+            padding: 20px;
+        }
+
+        img {
+            box-shadow: @base-shadow;
+        }
+    }
+
+    .search-results-list {
+        margin-top: 10px;
+
+        ul { 
+            padding: 0 0 0 20px; 
+        }
+    }
+}
+
+@media (max-width: @screen-xs-max) {
+    .search-results {
+        .search-result-images {    
+            > div {    
+                display: inline-block;
+                position: static !important;
+                padding: 0 !important;
+                width: 49%;
+            }
+        }
+
+        .panel-body {
+            padding: 25px;
+        }
+    }
+}
+
+// history
+.panel-search-history {
+    height: 100%;
+
+    .panel-body {
+        padding: 25px;
+    }
+
+    .search-history-link {
+        display: inline-block;
+        color: @brand-primary;
+        font-size: @font-size-small;
+        cursor: pointer;
+        &:hover { text-decoration: underline; }        
+    }
+}
+
+// search inputs
+.input-group { 
+    position: relative; 
+    width: 100%;
+
+    input {
+        font-size: @font-size-base + 2;
+        padding: 6px 10px 6px 5px;
+        display: block;
+        height: 49px;
+        width: 100%;
+        border: none;
+        border-bottom: 1px solid #40acff;
+        background: none;
+        color: #fff;
+
+        &:focus { outline: none; background: none; }
+        &:invalid { box-shadow: none; }
+
+        &.ng-invalid.ng-touched { 
+            border-bottom: 1px solid #c30000; 
+            + label { color: #c30000; }
+        }
+    }
+
+    label {
+        color: #40acff; 
+        font-size: @font-size-base + 2;
+        position: absolute;
+        left: 5px;
+        top: 10px;
+        transition: 0.2s ease all;
+
+        span {
+            font-size: 14px;
+            font-weight: normal;
+        }
+    }
+
+    input:focus ~ label, input:valid ~ label {
+        top: -20px;
+        font-size: 14px;
+        color: #40acff;
+    }    
+}
+
+/* Change Autocomplete styles in Chrome*/
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus
+input:-webkit-autofill, 
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: 1px solid #0090ff;
+  -webkit-text-fill-color: #fff;
+  box-shadow: 0 -1px 0 0 #fff inset;
+  transition: background-color 5000s ease-in-out 0s;
+}

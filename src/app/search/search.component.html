@@ -1,0 +1,88 @@
+<div class="search-wrapper margin-b">
+  <div class="container">
+
+    <h1 class="title">find common<br>movie cast</h1>
+
+    <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-xs-12 col-sm-4 col-md-5 margin-b-sm">
+          <div class="input-group">
+            <input id="movieA" type="text" name="movieA" formControlName="movieA" required>
+            <label for="movieA">
+              Movie A
+              <span *ngIf="!searchForm.controls.movieA.valid && searchForm.controls.movieA.touched">(can't be empty)</span>
+            </label>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-5 margin-b-sm">
+          <div class="input-group">
+            <input id="movieB" type="text" name="movieB" formControlName="movieB" required>
+            <label for="movieB">
+              Movie B
+              <span *ngIf="!searchForm.controls.movieB.valid && searchForm.controls.movieB.touched">(can't be empty)</span>
+            </label>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-2 margin-b-sm">
+          <span *ngIf="moviesService.isLoading">
+            <button type="button" class="btn btn-primary btn-lg btn-block" [disabled]="true">loading</button>
+          </span>
+          <span *ngIf="!moviesService.isLoading">
+            <button type="submit" class="btn btn-primary btn-lg btn-block" [disabled]="!searchForm.valid">Submit</button>
+          </span>
+        </div>
+      </div>
+    </form>    
+
+  </div>
+</div>
+
+<!--messages-->
+<div class="container user-message" *ngIf="moviesService.errorMessage">
+  <div class="alert alert-info" role="alert">{{ moviesService.errorMessage }}</div>
+</div>
+
+<!--search results-->
+<div class="container margin-b-sm search-results" *ngIf="moviesService.common">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-xs-12 col-sm-4">
+              <div class="search-result-images">
+                <div><img class="img-responsive" [src]="moviesService.movieAInfo.Poster" alt="" /></div>
+                <div><img class="img-responsive" [src]="moviesService.movieBInfo.Poster" alt="" /></div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-7 col-sm-offset-1">
+              <h3>
+                Common cast for 
+                <span class="text-primary">{{ moviesService.movieAInfo.Title }}</span> and 
+                <span class="text-primary">{{ moviesService.movieBInfo.Title }}</span>
+              </h3>
+              <div class="row">
+                <div class="col-xs-12 col-sm-6 search-results-list" *ngIf="moviesService.common.cast.length">
+                  <h4>Actors:</h4>
+                  <ul>
+                    <li *ngFor="let actor of moviesService.common.cast">
+                      {{ actor }}
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-xs-12 col-md-6 search-results-list" *ngIf="moviesService.common.director.length">
+                  <h4>Directors:</h4>
+                  <ul>
+                    <li *ngFor="let director of moviesService.common.director">
+                      {{ director }}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
