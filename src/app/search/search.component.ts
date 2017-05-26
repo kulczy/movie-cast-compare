@@ -9,7 +9,7 @@ import { MoviesService } from '../services/movies.service';
 export class SearchComponent implements OnInit {
   searchForm: FormGroup; // movies input group
 
-  constructor( private moviesService: MoviesService ) {}
+  constructor( public moviesService: MoviesService ) {}
 
   ngOnInit() {
     // create input controls

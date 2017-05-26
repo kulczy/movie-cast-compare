@@ -8,7 +8,7 @@ import { MoviesService } from '../services/movies.service';
 })
 export class SearchHistoryComponent implements OnInit {
 
-  constructor(private searchHistoryService: SearchHistoryService, private moviesService: MoviesService) { }
+  constructor(public searchHistoryService: SearchHistoryService, private moviesService: MoviesService) { }
 
   ngOnInit() {
     this.searchHistoryService.getHistoryFromLocalStorage(); // get history from local storage    
