@@ -67,32 +67,4 @@ export class MoviesService {
         }
       );
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  saveToLocalStorage(moviesTitle) {
-    let searchHistory: any = JSON.parse(localStorage.getItem('movieSearchHistory')) || []; // get search history or create empty if not exist
-    
-    for (var title of moviesTitle) {
-      let duplicate = searchHistory.indexOf(title); // check if new movie already exist    
-      if (duplicate !== -1) searchHistory.splice(duplicate, 1); // remove duplicate if exist
-      searchHistory.unshift(title); // add new movie to history
-    }
-
-    searchHistory = searchHistory.slice(0, 4); // cut history to 4 records
-    localStorage.setItem('movieSearchHistory', JSON.stringify(searchHistory)); // save history to local storage
-  }
 }
